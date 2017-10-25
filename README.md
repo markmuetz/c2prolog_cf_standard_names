@@ -6,7 +6,6 @@ run:
 
     cd c2prolog_cf_standard_names
 
-    # Get version 47 of CF standard names.
-    ./get-standard-name-table.sh 47
     # Generate prolog standard names file.
+    # Uses CF version 47.
     ./c2prolog_cf_standard_names.py
