@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import os
 import xml.etree.ElementTree as ET
 
 CF_STANDARD_NAME_FILE = 'data_sources/cf-standard-name-table.xml'
@@ -46,7 +47,14 @@ def extract_prolog_standard_names(cf_standard_name_table):
 
 if __name__ == '__main__':
     prolog_standard_names = extract_prolog_standard_names(CF_STANDARD_NAME_FILE)
+
+    # Make output dir if it doesn't exist.
+    if not os.path.exists(os.path.dirname(PROLOG_OUTPUT_FILE)):
+        os.makedirs(os.path.dirname(PROLOG_OUTPUT_FILE))
+
+    # Write out standard names.
     with open(PROLOG_OUTPUT_FILE, 'w') as f:
         for prolog_standard_name in prolog_standard_names:
             f.write(prolog_standard_name + '\n')
+
     print('Written to {}'.format(PROLOG_OUTPUT_FILE))
